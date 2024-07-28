@@ -1,113 +1,192 @@
-import Image from "next/image";
+import Link from "next/link";
+import { Roboto, Jost } from "next/font/google";
+import { FaQuoteLeft, FaLock, FaBox, FaHandHoldingHeart } from "react-icons/fa";
+import prisma from "@/prisma/Client";
+
+const roboto = Roboto({
+  weight: "700",
+  subsets: ["latin"],
+});
+const robotoLight = Roboto({
+  weight: "400",
+  subsets: ["latin"],
+});
+const jost = Jost({ subsets: ["latin"], weight: "600" });
+interface ExtraDetail {
+  FramedWithoutBorders: string[];
+  FramedWithBordersAcrylicGlass: string[];
+}
+interface Item {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  extraDetail: ExtraDetail;
+  image: string;
+}
+interface TestimonialData {
+  name: string;
+  review: string;
+  imageURL: string;
+  Itemtype: "Poster" | "Postcard";
+}
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <>
+      <div className="bg-[url('./assets/Banner.jpg')] h-[80vh] bg-cover  flex justify-center items-center flex-col">
+        <h1
+          className={`${roboto.className} text-6xl  sm:text-8xl  text-[#2c541d] tracking-widest pb-5`}
+        >
+          EARTH
+        </h1>
+
+        <h2 className=" text-2xl tracking-wider sm:text-4xl sm:tracking-[.3rem] font-light pb-10">
+          MULTIPURPOSE STORE
+        </h2>
+        <Link
+          className=" py-3 px-14 bg-[#74a84a] text-white tracking-[.1rem]"
+          href="/shop"
+        >
+          SHOP NOW
+        </Link>
       </div>
+      <Quickbuy />
+      <hr />
+      <Testimonial />
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className="bg-[url('./assets/Banner.jpg')] h-[70vh] bg-cover  flex justify-center items-center flex-col">
+        <h1 className=" text-center text-2xl  sm:text-4xl font-medium  tracking-widest pb-5">
+          Give the Gift of a Postcard
+        </h1>
+        <h2 className=" text-md tracking-wider  pb-10">
+          Give the gift of a lasting memory with a postcard
+        </h2>
+        <Link
+          className=" py-3 px-10 bg-[#74a84a] text-white tracking-[.1rem]"
+          href="/shop"
+        >
+          PURCHASE A POSTCARD
+        </Link>
       </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      <Benifits />
+    </>
   );
 }
+
+const Quickbuy = async () => {
+  try {
+    const data = await prisma.product.findMany();
+    return (
+      <div className=" flex flex-wrap justify-center items-center p-5 sm:p-20 gap-2">
+        {data.slice(0, 3).map((item) => (
+          <div
+            key={item.id}
+            className=" w-full sm:w-[29%] grid gap-2  p-5 sm:p-2 "
+          >
+            <Link href={`/shop/${item.Itemtype}/${item.id}`}>
+              <img className="" src={item.image} alt="" />
+            </Link>
+            <span className=" text-zinc-400 font-thin ">{item.Itemtype}</span>
+            <Link href={`/shop/${item.Itemtype}/${item.id}`}>
+              <h1 className={`text-lg ${roboto.className}`}>{item.title}</h1>
+            </Link>
+            <span className=" font-bold text-zinc-500">{`₹${item.price}`}</span>
+          </div>
+        ))}
+      </div>
+    );
+  } catch (error) {
+    console.log(error);
+    return <div>error occured</div>;
+  }
+};
+
+const Testimonial = () => {
+  return (
+    <div className=" p-5 sm:p-32">
+      <h1 className={` text-3xl sm:text-5xl pb-20 ${jost.className}`}>
+        What our customers say
+      </h1>
+      <div className=" flex justify-evenly items-center flex-wrap gap-14 sm:gap-20">
+        {TestimonialData.map((item, index) => (
+          <div className=" w-full sm:w-[28%]" key={index}>
+            <span>
+              <FaQuoteLeft className=" text-2xl text-[#2c541d] mb-5 " />
+            </span>
+            <p className={`${robotoLight.className} text-lg`}>{item.review}</p>
+            <img
+              className=" w-9 aspect-square m-4 ml-0 rounded-full"
+              src={item.imageURL}
+              alt=""
+            />
+            <h1 className={`${roboto.className} text-xs tracking-widest`}>
+              {item.name}
+            </h1>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const TestimonialData = [
+  {
+    name: "JENNIFER LEWIS",
+    review:
+      "Fast shipping and excellent customer service. The product was even better than expected. I will definitely be a returning customer.",
+    imageURL: "https://picsum.photos/id/65/100",
+  },
+  {
+    name: "JUAN CARLOS",
+    review:
+      "Thank you for the excellent shopping experience. It arrived quickly and was exactly as described. I will definitely be shopping with you again in the future.",
+    imageURL: "https://picsum.photos/id/22/100",
+  },
+  {
+    name: "ALICIA HEART",
+    review:
+      "Great user experience on your website. I found exactly what I was looking for at a great price. I will definitely be telling my friends.",
+    imageURL: "https://picsum.photos/id/64/100",
+  },
+];
+
+const Benifits = () => {
+  return (
+    <div className=" p-20 flex justify-evenly items-center flex-wrap gap-10">
+      <div className=" flex justify-start sm:justify-center items-center gap-5  md:border-r w-full sm:w-[30%] ">
+        <div className=" w-10 aspect-square rounded-full bg-[#2c541d] flex justify-center items-center">
+          <FaLock className=" text-white" />
+        </div>
+        <div>
+          <h1 className=" text-md  font-medium tracking-widest ">
+            SECURE PAYMENT
+          </h1>
+          <p className=" text-sm mt-1">All our payments are SSL secured</p>
+        </div>
+      </div>
+      <div className=" flex justify-start sm:justify-center items-center gap-5  md:border-r w-full sm:w-[30%] ">
+        <div className=" w-10 aspect-square rounded-full bg-[#2c541d] flex justify-center items-center">
+          <FaBox className=" text-white" />
+        </div>
+        <div>
+          <h1 className=" text-md  font-medium tracking-widest ">
+            DELIVERED WITH CARE
+          </h1>
+          <p className=" text-sm mt-1">Super fast shipping to your door</p>
+        </div>
+      </div>
+      <div className=" flex justify-start sm:justify-center  items-center gap-5  w-full  sm:w-[30%]  ">
+        <div className=" w-10 aspect-square rounded-full bg-[#2c541d] flex justify-center items-center">
+          <FaHandHoldingHeart className=" text-white" />
+        </div>
+        <div>
+          <h1 className=" text-md  font-medium tracking-widest ">
+            EXCELLENT SERVICE
+          </h1>
+          <p className=" text-sm mt-1">Live chat and phone support</p>
+        </div>
+      </div>
+    </div>
+  );
+};
