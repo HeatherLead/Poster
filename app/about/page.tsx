@@ -3,6 +3,7 @@ import about from "../assets/about.jpg";
 import { Poppins } from "next/font/google";
 import Link from "next/link";
 import Footer from "../Footer";
+import Image from "next/image";
 const poppins = Poppins({
   weight: "500",
   subsets: ["latin"],
@@ -16,7 +17,13 @@ const About = () => {
         </h1>
       </div>
       <div className=" flex justify-center items-center gap-14 flex-wrap p-24  ">
-        <img className=" p-8 w-1/2 " src={about.src} alt="" />
+        <Image
+          width={500}
+          height={500}
+          className=" p-8 w-1/2 "
+          src={about.src}
+          alt=""
+        />
         <div className=" w-[37%] flex justify-evenly gap-8 flex-col">
           <h1 className={`${poppins.className}  text-4xl`}>OUR MISSION</h1>
           <p className=" text-[17px] text-zinc-500">

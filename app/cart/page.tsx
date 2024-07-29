@@ -37,7 +37,7 @@ interface Product {
   };
 }
 
-const page = () => {
+const Page = () => {
   const [subTotal, setSubTotal] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [coupon, setCoupon] = useState("");
@@ -80,7 +80,7 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
 
 const Checkout = ({
   subTotal,
