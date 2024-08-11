@@ -6,6 +6,7 @@ import { Poppins, Roboto } from "next/font/google";
 import {
   Avatar,
   Box,
+  Button,
   Callout,
   Card,
   Flex,
@@ -18,7 +19,6 @@ import Link from "next/link";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import authOptions from "@/app/auth/authOptions";
 
 const roboto = Roboto({
   weight: "400",
@@ -237,12 +237,24 @@ const Item = () => {
                               <Text as="div" size="3" weight="bold">
                                 {user.user?.name}
                               </Text>
+                              <Text as="div" size="1">
+                                {user.user?.email}
+                              </Text>
                             </Box>
                           </Flex>
                         </Card>
                       </Box>
                     </div>
                   )}
+                  <Button
+                    style={{ cursor: "pointer" }}
+                    type="submit"
+                    size={"3"}
+                    my={"4"}
+                    color="grass"
+                  >
+                    Submit
+                  </Button>
                 </form>
               </Tabs.Content>
             </Box>

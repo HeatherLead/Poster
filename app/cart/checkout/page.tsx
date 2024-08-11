@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { CiBookmarkPlus } from "react-icons/ci";
 import {
   Country,
   State,
