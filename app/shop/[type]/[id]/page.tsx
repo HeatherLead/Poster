@@ -18,7 +18,7 @@ import Link from "next/link";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import authOptions from "@/app/auth/authOptions";
 
 const roboto = Roboto({
   weight: "400",
