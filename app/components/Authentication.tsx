@@ -38,7 +38,7 @@ const Authentication = () => {
               <Link href="/api/auth/signout">Log Out</Link>
             </DropdownMenu.Item>
             <DropdownMenu.Item>
-              <Link href="/my-orders">My Orders</Link>
+              <Link href="/">My Orders</Link>
             </DropdownMenu.Item>
           </DropdownMenu.Content>
         </DropdownMenu.Root>
