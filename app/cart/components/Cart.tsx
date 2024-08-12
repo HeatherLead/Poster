@@ -43,9 +43,7 @@ const Cart = ({ setSubTotal }: { setSubTotal: (subTotal: number) => void }) => {
         const productDetails = await Promise.all(
           productIds.map(async (productId) => {
             try {
-              const response = await axios.get("/api/products/product", {
-                params: { id: productId },
-              });
+              const response = await axios.get(`/api/products/${productId}`);
               return response.data as Product;
             } catch (error) {
               console.error(
