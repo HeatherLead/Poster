@@ -1,11 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/prisma/Client';
 
-export async function GET(request: NextRequest) {
-  try {
-    const { searchParams } = new URL(request.url);
-    const id = searchParams.get('id');
+type Params = {
+  product: string
+}
 
+export async function GET(request: NextRequest , {params}:{params:Params}) {
+  const id = params.product;
+  try {
     if (!id) {
       return NextResponse.json({ error: 'Missing ID' }, { status: 400 });
     }

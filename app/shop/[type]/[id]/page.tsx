@@ -108,13 +108,10 @@ const Item = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("/api/products/product", {
-          params: { id },
-        });
+        const response = await axios.get(`/api/products/${id}`);
         setData(response.data);
       } catch (error) {
         console.error("Error fetching product:", error);
-
         setData(null);
       } finally {
         setLoading(false);
