@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { FaUser, FaShoppingBag } from "react-icons/fa";
+import { FaShoppingBag } from "react-icons/fa";
 import Authentication from "./components/Authentication";
 const Taskbar = () => {
   return (

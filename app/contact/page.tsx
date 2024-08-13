@@ -4,7 +4,6 @@ import { FiPhoneCall } from "react-icons/fi";
 import { CiLocationOn } from "react-icons/ci";
 import { FaFacebookF, FaLinkedinIn, FaPlay, FaTwitter } from "react-icons/fa";
 import { Poppins } from "next/font/google";
-import Footer from "../Footer";
 const poppins = Poppins({
   weight: "600",
   subsets: ["latin"],
