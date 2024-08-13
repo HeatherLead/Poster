@@ -5,8 +5,6 @@ import authOptions from "@/app/auth/authOptions";
 
 
 interface address {
-    id: string;
-  userId?: string;
   addressName: string;
   firstName: string;
   lastName: string;
